@@ -29,11 +29,11 @@ movhi pc, lr
 push {r4, lr}
 fbinfoaddr .req r4
 ldr fbinfoaddr, =FrameBufferInfo
-str width, [fbinfoaddr, #0x0]
-str height, [fbinfoaddr, #0x4]
-str width, [fbinfoaddr, #0x8]
-str height, [fbinfoaddr, #0xb]
-str bitDepth, [fbinfoaddr, #0x14]
+str width, [fbinfoaddr, #0]
+str height, [fbinfoaddr, #4]
+str width, [fbinfoaddr, #8]
+str height, [fbinfoaddr, #12]
+str bitDepth, [fbinfoaddr, #20]
 
 .unreq width
 .unreq height
@@ -57,9 +57,9 @@ bl MailboxRead
 
 teq r0, #0
 movne r0, #0
-popne {r4, lr}
+popne {r4, pc}
 
 mov result, fbinfoaddr
-pop {r4, lr}
+pop {r4, pc}
 .unreq result
 .unreq fbinfoaddr

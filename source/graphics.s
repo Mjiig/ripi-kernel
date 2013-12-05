@@ -24,7 +24,6 @@ tst status, #0x80000000
 bne wait1$
 .unreq status
 
-lsl message, #4
 add message, channel
 .unreq channel
 
@@ -40,7 +39,7 @@ cmp r0, #15
 movhi pc, lr
 
 channel .req r1
-mov channel, r1
+mov channel, r0
 
 push {lr}
 bl GetMailboxBase
